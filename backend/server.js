@@ -22,5 +22,6 @@ app.use('/vocabulaire', vocabulaireRoutes); // Ajouter le préfixe /vocabulaire
 
 // démarrer le server
 app.listen(PORT,()=>{
-console.log('Server en cours d\'execution sur http://localhost:${PORT}');
+
+console.log(`Server en cours d'exécution sur http://localhost:${PORT}`);
 })
