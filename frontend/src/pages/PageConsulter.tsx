@@ -1,61 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface Vocabulaire {
-  _id: string;
-  francais: string;
-  anglais: string;
+    _id: string;
+    francais: string;
+    anglais: string;
 }
 
 const PageConsulter: React.FC = () => {
-  const [vocabulaire, setVocabulaire] = useState<Vocabulaire[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+    const [vocabulaire, setVocabulaire] = useState<Vocabulaire[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const fetchVocabulaire = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/vocabulaire");
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération du vocabulaire");
-      }
-      const data = await response.json();
-      setVocabulaire(data);
-    } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Une erreur inconnue est survenue.");
-    }
-  };
+    const fetchVocabulaire = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/vocabulaire");
+            if (!response.ok) {
+                throw new Error("Erreur lors de la récupération du vocabulaire");
+            }
+            const data = await response.json();
+            setVocabulaire(data);
+        } catch (error) {
+            setErrorMessage(error instanceof Error ? error.message : "Une erreur inconnue est survenue.");
+        }
+    };
 
-  useEffect(() => {
-    fetchVocabulaire();
-  }, []);
+    const effacerMot = async (id: string) => {
+        try {
+            const response = await fetch(`http://localhost:5000/vocabulaire/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Erreur lors de la suppression du mot");
+            }
+            fetchVocabulaire(); // Rafraîchir la liste après suppression
+        } catch (error) {
+            setErrorMessage(error instanceof Error ? error.message : "Une erreur inconnue est survenue.");
+        }
+    };
 
-  return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h1 style={{ textAlign: "center" }}>Liste de Vocabulaire</h1>
-      <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "20px" }}>
-        <Link to="/Home" style={{ marginRight: "20px" }}>Retour à l'accueil</Link>
-        <Link to="/ajouter">ajouter du vocabulaire</Link>
-      </div>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Affiche le message d'erreur si présent */}
-      <ul style={{ listStyleType: "none", padding: "0" }}>
-        {vocabulaire.map((item) => (
-          <li
-            key={item._id}
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              margin: "5px 0",
-            }}
-          >
-            {item.francais} - {item.anglais}
-          </li>
-        ))}
-      </ul>
-      <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "20px" }}>
-        <Link to="/Home" style={{ marginRight: "20px" }}>Retour à l'accueil</Link>
-        <Link to="/ajouter">ajouter du vocabulaire</Link>
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        fetchVocabulaire();
+    }, []);
+
+    return (
+        <div>
+            <h1>Liste de Vocabulaire</h1>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            <ul>
+                {vocabulaire.map((item) => (
+                    <li key={item._id}>
+                        {item.francais} - {item.anglais}
+                        <Link to={`/modifier/${item._id}`} style={{ marginLeft: "10px" }}>Corriger</Link>
+                        <button onClick={() => effacerMot(item._id)} style={{ marginLeft: "10px", color: "red" }}>
+                            Effacer
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default PageConsulter;

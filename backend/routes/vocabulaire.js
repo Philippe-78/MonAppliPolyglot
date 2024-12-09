@@ -1,29 +1,44 @@
+
+// module.exports = router;
 const express = require('express');
-const Vocabulaire = require('../models/vocabulaire');
+const {
+  ajouterVocabulaire,// Importer la fonction  ajouterVocabulaire   definie dans le fichier vocabulaireController
+  getVocabulaire,// Importer la fonction      getVocabulaire       definie dans le fichier vocabulaireController
+  getVocabulaireById, // S'assurer que c'est importé
+  effacerVocabulaire,// Importer la fonction  effacerVocabulaire   definie dans le fichier vocabulaireController
+  modifierVocabulaire,// Importer la fonction modifierVocabulaire  definie dans le fichier vocabulaireController
+} = require('../controllers/vocabulaireController');
 
 const router = express.Router();
 
 // Route pour ajouter un vocabulaire
-router.post('/', async (req, res) => {
+router.post('/', ajouterVocabulaire);
+
+// Route pour récupérer tout le vocabulaire
+router.get('/', getVocabulaire);
+
+
+router.get('/:id', async (req, res) => {
   try {
-    const { francais, anglais } = req.body;
-    const nouveauMot = new Vocabulaire({ francais, anglais });
-    await nouveauMot.save();
-    res.status(201).json(nouveauMot);
+      const { id } = req.params;
+console.log(`Requête GET pour le mot avec ID: ${id}`);
+      const vocabulaire = await Vocabulaire.findById(id);
+      if (!vocabulaire) {
+          return res.status(404).json({ message: "Mot non trouvé" });
+      }
+      res.json(vocabulaire);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
   }
 });
 
-// Route pour récupérer le vocabulaire
-router.get('/', async (req, res) => {
-  try {
-    const vocabulaire = await Vocabulaire.find();
-    res.json(vocabulaire);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Route pour supprimer un mot de vocabulaire par ID
+router.delete('/:id', effacerVocabulaire);
+
+// Route pour modifier un vocabulaire par ID
+router.put('/:id', modifierVocabulaire);
+
+
 
 
 
