@@ -8,6 +8,8 @@ const Home: React.FC = () => {
       <Link to="/ajouter">Ajouter du Vocabulaire dans votre dictionnaire</Link>
       <br/>
       <Link to="/consulter">Consulter votre liste de vocabulaire</Link>
+      <br/>
+      <Link to="/modifier">Consulter votre liste de vocabulaire</Link>
     </div>
   );
 };

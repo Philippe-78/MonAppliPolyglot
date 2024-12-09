@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 interface Vocabulaire {
     _id: string;
@@ -91,7 +91,10 @@ const PageModifierMot: React.FC = () => {
                     Modifier
                 </button>
             </form>
-        </div>
+            <div><Link to="/ajouter">Ajouter du Vocabulaire dans votre dictionnaire</Link>
+<br/>
+<Link to="/consulter">Consulter votre liste de vocabulaire</Link>
+       </div> </div>
     );
 };
 

@@ -84,7 +84,7 @@ const PageAjouter: React.FC = () => {
       </form>
       {confirmationMessage && <p style={{ color: "green" }}>{confirmationMessage}</p>}
       <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "20px" }}>
-        <Link to="/Home" style={{ marginRight: "20px" }}>Retour à l'accueil</Link>
+        <Link to="/" style={{ marginRight: "20px" }}>Retour à l'accueil</Link>
         <Link to="/consulter">Consulter la liste</Link>
         <Link to="/modifier">modifier un mot</Link>
       </div>

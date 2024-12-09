@@ -18,19 +18,19 @@ router.post('/', ajouterVocabulaire);
 router.get('/', getVocabulaire);
 
 
-router.get('/:id', async (req, res) => {
-  try {
-      const { id } = req.params;
-console.log(`Requête GET pour le mot avec ID: ${id}`);
-      const vocabulaire = await Vocabulaire.findById(id);
-      if (!vocabulaire) {
-          return res.status(404).json({ message: "Mot non trouvé" });
-      }
-      res.json(vocabulaire);
-  } catch (error) {
-      res.status(500).json({ message: error.message });
-  }
-});
+ router.get('/:id',getVocabulaireById,);// async (req, res) => {
+//   try {
+//       const { id } = req.params;
+// console.log(`Requête GET pour le mot avec ID: ${id}`);
+//       const vocabulaire = await Vocabulaire.findById(id);
+//       if (!vocabulaire) {
+//           return res.status(404).json({ message: "Mot non trouvé" });
+//       }
+//       res.json(vocabulaire);
+//   } catch (error) {
+//       res.status(500).json({ message: error.message });
+//   }
+// });
 
 // Route pour supprimer un mot de vocabulaire par ID
 router.delete('/:id', effacerVocabulaire);
