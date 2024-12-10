@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 interface Vocabulaire {
     _id: string;
@@ -43,6 +44,7 @@ const PageConsulter: React.FC = () => {
     }, []);
 
     return (
+        <Layout>
         <div>
             <h1>Liste de Vocabulaire</h1>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
@@ -51,13 +53,16 @@ const PageConsulter: React.FC = () => {
                     <li key={item._id}>
                         {item.francais} - {item.anglais}
                         <Link to={`/modifier/${item._id}`} style={{ marginLeft: "10px" }}>Corriger</Link>
+                        
                         <button onClick={() => effacerMot(item._id)} style={{ marginLeft: "10px", color: "red" }}>
                             Effacer
                         </button>
                     </li>
                 ))}
             </ul>
+            <Link to={`/`} style={{ marginLeft: "10px" }}>Accueil</Link>
         </div>
+        </Layout>
     );
 };
 

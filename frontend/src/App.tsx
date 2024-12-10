@@ -4,7 +4,7 @@ import PageAjouter from "./pages/PageAjouter";
 import PageHome from "./pages/PageHome"; // Par exemple, si vous avez une page d'accueil
 import PageConsulter from "./pages/PageConsulter";
 import PageModifierMot from "./pages/PageModifierMot";
-
+import "./style.scss"
 const App: React.FC = () => {
   return (
     <Router>

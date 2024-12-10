@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 interface Vocabulaire {
   _id: string;
@@ -44,6 +45,7 @@ const PageAjouter: React.FC = () => {
   }, []);
 
   return (
+    <Layout>
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h1 style={{ textAlign: "center" }}>Ajouter du vocabulaire</h1>
       <form
@@ -87,9 +89,12 @@ const PageAjouter: React.FC = () => {
         <Link to="/" style={{ marginRight: "20px" }}>Retour à l'accueil</Link>
         <Link to="/consulter">Consulter la liste</Link>
         <Link to="/modifier">modifier un mot</Link>
+        <Link to="/">retour à l'accueil</Link>
+
       </div>
    
    </div>
+   </Layout>
   )
 }
 

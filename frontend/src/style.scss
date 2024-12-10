@@ -1,0 +1,100 @@
+/* Couleurs pastel */
+:root {
+    --primary-color: #a8dadc; /* Bleu pastel */
+    --secondary-color: #ffafcc; /* Rose pastel */
+    --background-color: #f1faee; /* Fond très clair */
+    --text-color: #1d3557; /* Texte sombre pour le contraste */
+    --footer-background: #457b9d; /* Bleu moyen pour le footer */
+}
+
+/* Styles globaux */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main */
+main {
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-background);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Liens */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+/* Styles pour le main */
+main {
+    background-color: #ffffff; /* Fond blanc pour le contenu principal */
+    padding: 20px; /* Espacement interne */
+    border-radius: 8px; /* Coins arrondis pour un look doux */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
+    margin: 20px auto; /* Marge en haut et en bas, centré horizontalement */
+    max-width: 800px; /* Largeur maximale pour le contenu */
+}
+
+/* Titres dans le main */
+main h1 {
+    color: var(--primary-color); /* Couleur du titre */
+    font-size: 2em; /* Taille du titre */
+    margin-bottom: 15px; /* Espacement en bas du titre */
+}
+
+/* Paragraphes */
+main p {
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+    margin-bottom: 15px; /* Espacement en bas des paragraphes */
+}
+
+/* Liens dans le main */
+main a {
+    color: var(--primary-color); /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement par défaut */
+}
+
+main a:hover {
+    color: var(--secondary-color); /* Changement de couleur au survol */
+    text-decoration: underline; /* Soulignement au survol */
+}
